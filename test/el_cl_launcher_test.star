@@ -102,6 +102,7 @@ def test_launch_with_defaults(plan):
             "--l1={0}".format(l1_config_env_vars["L1_RPC_URL"]),
             "--l1.rpckind={0}".format(l1_config_env_vars["L1_RPC_KIND"]),
             "--l1.beacon={0}".format(l1_config_env_vars["CL_RPC_URL"]),
+            "--l1.beacon.ignore=true",
             "--p2p.advertise.ip={0}".format(
                 ethereum_package_constants.PRIVATE_IP_ADDRESS_PLACEHOLDER
             ),
