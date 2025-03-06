@@ -114,6 +114,7 @@ OP_CONTRACT_DEPLOYER_PARAMS = [
     "l1_artifacts_locator",
     "l2_artifacts_locator",
     "global_deploy_overrides",
+    "my_l2_artifacts",
 ]
 
 OP_CONTRACT_DEPLOYER_GLOBAL_DEPLOY_OVERRIDES = ["faultGameAbsolutePrestate"]
