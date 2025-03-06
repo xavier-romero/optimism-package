@@ -216,10 +216,7 @@ def deploy_contracts(
         ),
     )
 
-
-
-
-
+    # XAVI HOOK START
     apply_cmds = ["sleep infinity"]
     plan.print("IM ABOUT TO SLEEP FOREVER; NOW SEARCH THE CONTAINER!!!")
 
@@ -241,9 +238,7 @@ def deploy_contracts(
     )
 
     plan.print("WTF WAKE UP")
-
-
-
+    # XAVI HOOK END
 
     apply_cmds = [
         "op-deployer apply --l1-rpc-url $L1_RPC_URL --private-key $PRIVATE_KEY --workdir /network-data",
