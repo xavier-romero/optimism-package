@@ -216,6 +216,35 @@ def deploy_contracts(
         ),
     )
 
+
+
+
+
+    apply_cmds = ["sleep infinity"]
+    plan.print("IM ABOUT TO SLEEP FOREVER; NOW SEARCH THE CONTAINER!!!")
+
+    xavi_output = plan.run_sh(
+        name="op-deployer-xavi",
+        description="XAVI HOOK",
+        image=optimism_args.op_contract_deployer_params.image,
+        env_vars={"PRIVATE_KEY": str(priv_key)} | l1_config_env_vars,
+        store=[
+            StoreSpec(
+                src="/network-data",
+                name="op-deployer-configs",
+            )
+        ],
+        files={
+            "/network-data": op_deployer_configure.files_artifacts[0],
+        },
+        run=" && ".join(apply_cmds),
+    )
+
+    plan.print("WTF WAKE UP")
+
+
+
+
     apply_cmds = [
         "op-deployer apply --l1-rpc-url $L1_RPC_URL --private-key $PRIVATE_KEY --workdir /network-data",
     ]
@@ -231,9 +260,6 @@ def deploy_contracts(
                 ),
             ]
         )
-
-    apply_cmds.append("sleep infinity")
-    plan.print("IM ABOUT TO SLEEP FOREVER; NOW SEARCH THE CONTAINER!!!")
 
     op_deployer_output = plan.run_sh(
         name="op-deployer-apply",
