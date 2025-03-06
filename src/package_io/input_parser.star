@@ -246,6 +246,7 @@ def input_parser(plan, input_args):
             l2_artifacts_locator=results["op_contract_deployer_params"][
                 "l2_artifacts_locator"
             ],
+            my_l2_artifacts=results["op_contract_deployer_params"]["my_l2_artifacts"],
             global_deploy_overrides=results["op_contract_deployer_params"][
                 "global_deploy_overrides"
             ],
