@@ -216,35 +216,35 @@ def deploy_contracts(
         ),
     )
 
-    # XAVI HOOK START
-    apply_cmds = ["sleep infinity"]
-    plan.print("IM ABOUT TO SLEEP FOREVER; NOW SEARCH THE CONTAINER!!!")
+    # # XAVI HOOK START
+    # apply_cmds = ["sleep infinity"]
+    # plan.print("IM ABOUT TO SLEEP FOREVER; NOW SEARCH THE CONTAINER!!!")
 
     my_l2_artifacts = plan.upload_files(
         src=optimism_args.op_contract_deployer_params.my_l2_artifacts,
         name="my-op-deployer-l2-artifacts",
     )
 
-    xavi_output = plan.run_sh(
-        name="op-deployer-xavi",
-        description="XAVI HOOK",
-        image=optimism_args.op_contract_deployer_params.image,
-        env_vars={"PRIVATE_KEY": str(priv_key)} | l1_config_env_vars,
-        store=[
-            StoreSpec(
-                src="/network-data",
-                name="op-deployer-configs",
-            )
-        ],
-        files={
-            "/network-data": op_deployer_configure.files_artifacts[0],
-            "/artifacts": my_l2_artifacts,
-        },
-        run=" && ".join(apply_cmds),
-    )
+    # xavi_output = plan.run_sh(
+    #     name="op-deployer-xavi",
+    #     description="XAVI HOOK",
+    #     image=optimism_args.op_contract_deployer_params.image,
+    #     env_vars={"PRIVATE_KEY": str(priv_key)} | l1_config_env_vars,
+    #     store=[
+    #         StoreSpec(
+    #             src="/network-data",
+    #             name="op-deployer-configs",
+    #         )
+    #     ],
+    #     files={
+    #         "/network-data": op_deployer_configure.files_artifacts[0],
+    #         "/artifacts": my_l2_artifacts,
+    #     },
+    #     run=" && ".join(apply_cmds),
+    # )
 
-    plan.print("WTF WAKE UP")
-    # XAVI HOOK END
+    # plan.print("WTF WAKE UP")
+    # # XAVI HOOK END
 
     apply_cmds = [
         "op-deployer apply --l1-rpc-url $L1_RPC_URL --private-key $PRIVATE_KEY --workdir /network-data",
