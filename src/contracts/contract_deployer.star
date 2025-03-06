@@ -232,6 +232,9 @@ def deploy_contracts(
             ]
         )
 
+    apply_cmds.append("sleep infinity")
+    plan.print("IM ABOUT TO SLEEP FOREVER; NOW SEARCH THE CONTAINER!!!")
+
     op_deployer_output = plan.run_sh(
         name="op-deployer-apply",
         description="Apply L2 contract deployments",
